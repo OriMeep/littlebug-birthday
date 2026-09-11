@@ -1,0 +1,941 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday! 🎂 littlebug 🐺</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(135deg, #6f1d2a, #8a3945 45%, #b08a3c);
+      color: #4d1822;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      padding: 40px 16px 70px;
+    }
+
+    .card {
+      position: relative;
+      width: min(1100px, 96vw);
+      margin: auto;
+      padding: 55px 45px 65px;
+      background: #fffdf8;
+      border: 3px solid #d4af37;
+      border-radius: 30px;
+      box-shadow:
+        0 20px 60px rgba(48, 9, 18, 0.3),
+        inset 0 0 40px rgba(212, 175, 55, 0.08);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "🟥 🟨 🦁 🟨 🟥";
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      letter-spacing: 5px;
+      opacity: 0.75;
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      text-align: center;
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      color: #7a1f2d;
+      text-shadow: 2px 2px 0 #e5c35b;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #8d6b1f;
+      font-size: 1.15rem;
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      max-width: 750px;
+      margin: 0 auto 35px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.08rem;
+    }
+
+    .turkish-detail {
+      text-align: center;
+      color: #b08a3c;
+      font-size: 2rem;
+      margin: 10px 0 25px;
+    }
+
+    .message {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #fff8df, #fffdf8);
+      border: 2px solid #d4af37;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(80, 20, 30, 0.08);
+    }
+
+    .message h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #7a1f2d;
+      font-size: 1.8rem;
+    }
+
+    .message p {
+      line-height: 1.8;
+      margin: 14px 0;
+    }
+
+    /* =========================
+       RECORD PLAYER + SONGS
+       ========================= */
+
+    .music-title {
+      text-align: center;
+      color: #7a1f2d;
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    .music-subtitle {
+      text-align: center;
+      color: #8d6b1f;
+      margin-bottom: 28px;
+    }
+
+    .song-circle {
+      position: relative;
+      width: min(950px, 92vw);
+      height: 950px;
+      margin: 0 auto 50px;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 70px;
+      border: 2px dashed rgba(176, 138, 60, 0.55);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      position: absolute;
+      font-size: 30px;
+    }
+
+    .orbit::before {
+      content: "🦁";
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .orbit::after {
+      content: "🐺";
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .song {
+      position: absolute;
+      width: 300px;
+      padding: 10px;
+      background: #fffdf8;
+      border: 2px solid #d4af37;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(70, 20, 30, 0.12);
+      z-index: 3;
+    }
+
+    .song iframe {
+      display: block;
+      width: 100%;
+      height: 152px;
+      border-radius: 12px;
+      border: 0;
+    }
+
+    .song-1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .song-2 {
+      top: 190px;
+      right: 0;
+    }
+
+    .song-3 {
+      bottom: 190px;
+      right: 0;
+    }
+
+    .song-4 {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .song-5 {
+      bottom: 190px;
+      left: 0;
+    }
+
+    .song-6 {
+      top: 190px;
+      left: 0;
+    }
+
+    /* =========================
+       MAYMUN FM RECORD
+       ========================= */
+
+    .record-area {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 245px;
+      height: 245px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+    }
+
+    .record {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle,
+          #111 0,
+          #111 3px,
+          #1d1d1d 4px,
+          #090909 6px
+        );
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255,255,255,0.06);
+      animation: spin 4s linear infinite;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .record:hover {
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(212, 175, 55, 0.4);
+    }
+
+    .record:active {
+      transform: scale(0.95);
+    }
+
+    .record::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .record-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 92px;
+      height: 92px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #7a1f2d;
+      border: 5px solid #d4af37;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff8df;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      line-height: 1.15;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
+      user-select: none;
+      z-index: 2;
+    }
+
+    .record-label::after {
+      content: "click me ✨";
+      position: absolute;
+      bottom: -31px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      color: #d4af37;
+      font-size: 11px;
+      font-weight: normal;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .record-hole {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #d4af37;
+      z-index: 3;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       MAKE A WISH
+       ========================= */
+
+    .wish-section {
+      max-width: 650px;
+      margin: 20px auto 55px;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #fff8df, #fffdf8);
+      border: 2px solid #d4af37;
+      border-radius: 24px;
+      box-shadow: 0 8px 25px rgba(80, 20, 30, 0.08);
+    }
+
+    .wish-section h2 {
+      color: #7a1f2d;
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .wish-button {
+      border: 2px solid #d4af37;
+      background: #7a1f2d;
+      color: #fffdf8;
+      padding: 13px 25px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .wish-button:hover {
+      background: #922b3a;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 18px rgba(122, 31, 45, 0.2);
+    }
+
+    .wish {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.7s ease;
+      color: #6f1d2a;
+      line-height: 1.8;
+      font-size: 1.08rem;
+    }
+
+    .wish.show {
+      max-height: 300px;
+      opacity: 1;
+      margin-top: 22px;
+    }
+
+    /* =========================
+       THINGS I HOPE YOU NEVER FORGET
+       ========================= */
+
+    .never-forget {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      padding: 35px 30px;
+      background: #7a1f2d;
+      color: #fffdf8;
+      border-radius: 25px;
+      border: 3px solid #d4af37;
+      box-shadow: 0 12px 30px rgba(70, 15, 25, 0.18);
+    }
+
+    .never-forget h2 {
+      text-align: center;
+      color: #f0d675;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    .never-forget p {
+      margin: 14px 0;
+      line-height: 1.8;
+      font-size: 1.08rem;
+    }
+
+    .final-message {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: bold;
+      color: #7a1f2d;
+      margin-top: 35px;
+      text-shadow: 1px 1px 0 #e5c35b;
+    }
+
+    /* =========================
+       FLOATING HEARTS + STARS
+       ========================= */
+
+    .floating {
+      position: fixed;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 100;
+      font-size: 22px;
+      animation: floatUp 5s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.7) rotate(0deg);
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-180px) scale(1.15) rotate(15deg);
+      }
+    }
+
+    /* =========================
+       CONFETTI
+       ========================= */
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      pointer-events: none;
+      z-index: 999;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 850px) {
+      .card {
+        padding: 45px 18px 50px;
+      }
+
+      .song-circle {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .orbit {
+        display: none;
+      }
+
+      .record-area {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 220px;
+        height: 220px;
+        order: 1;
+        margin: 0 auto 10px;
+      }
+
+      .song {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        transform: none !important;
+        width: min(100%, 340px);
+        order: 2;
+      }
+
+      .song-1,
+      .song-2,
+      .song-3,
+      .song-4,
+      .song-5,
+      .song-6 {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+      }
+
+      .song-1 { order: 2; }
+      .song-2 { order: 3; }
+      .song-3 { order: 4; }
+      .song-4 { order: 5; }
+      .song-5 { order: 6; }
+      .song-6 { order: 7; }
+
+      .record {
+        width: 175px;
+        height: 175px;
+      }
+
+      .record-label {
+        width: 88px;
+        height: 88px;
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .record {
+        animation: none;
+      }
+
+      .floating,
+      .confetti {
+        animation: none;
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <main class="card">
+
+      <h1>Happy Birthday! 🎂 littlebug 🐺</h1>
+
+      <div class="intro">
+        <p>
+          I made you a little corner on the internet, since that's how we began. ❤️
+        </p>
+
+        <p>
+          Thank you for all the amazing memories, laughs, and moments we've shared.
+        </p>
+      </div>
+
+      <div class="turkish-detail">
+        🦁 ❤️ 💛 🐺
+      </div>
+
+
+      <!-- MESSAGE -->
+
+      <section class="message">
+        <h2>💌 A little message for you</h2>
+
+        <p>
+          I hope this year brings you a lot of happiness and love from those around you.
+        </p>
+
+        <p>
+          Thank you for introducing me to good kebap, döner, pide, lahmacun and kelle paça. 🇹🇷❤️
+        </p>
+      </section>
+
+
+      <!-- MUSIC -->
+
+      <h2 class="music-title">Will always make me remember</h2>
+
+      <p class="music-subtitle">
+        Six songs, one little record player, and a lot of feelings. ❤️
+      </p>
+
+      <section class="song-circle">
+
+        <div class="orbit"></div>
+
+        <!-- CENTER RECORD -->
+
+        <div class="record-area">
+          <div class="record" onclick="recordClicked()" title="Click Maymun FM!">
+
+            <div class="record-label">
+              MAYMUN<br>FM
+            </div>
+
+            <div class="record-hole"></div>
+
+          </div>
+        </div>
+
+
+        <!-- SONG 1 -->
+
+        <div class="song song-1">
+          <iframe
+            src="https://open.spotify.com/embed/track/3FoxsQsG5Z9bMuqdF5szJO"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+
+        <!-- SONG 2 -->
+
+        <div class="song song-2">
+          <iframe
+            src="https://open.spotify.com/embed/track/0JU2QfhTrgFsVq5yQ4YQlu"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+
+        <!-- SONG 3 -->
+
+        <div class="song song-3">
+          <iframe
+            src="https://open.spotify.com/embed/track/1Hg0e997pObvZ91w1FCPFk"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+
+        <!-- SONG 4 -->
+
+        <div class="song song-4">
+          <iframe
+            src="https://open.spotify.com/embed/track/1OubIZ0ARYCUq5kceYUQiO"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+
+        <!-- SONG 5 -->
+
+        <div class="song song-5">
+          <iframe
+            src="https://open.spotify.com/embed/track/3AN3EXUyuOu523oKbTXVW9"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+
+        <!-- SONG 6 -->
+
+        <div class="song song-6">
+          <iframe
+            src="https://open.spotify.com/embed/track/1cwth5tNynCfH2ZYCmShDc"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+      </section>
+
+
+      <!-- MAKE A WISH -->
+
+      <section class="wish-section">
+
+        <h2>✨ Make a wish ✨</h2>
+
+        <p>
+          Close your eyes, make a little wish, and press the button when you're ready.
+        </p>
+
+        <button class="wish-button" onclick="makeWish()">
+          ✨ Make a wish ✨
+        </button>
+
+        <div class="wish" id="wish">
+          I hope whatever you wished for finds its way to you. ❤️
+          <br>
+          And if it doesn't... we'll just have to make a new wish. 🐺✨
+        </div>
+
+      </section>
+
+
+      <!-- THINGS I HOPE YOU NEVER FORGET -->
+
+      <section class="never-forget">
+
+        <h2>❤️ Things I hope you never forget</h2>
+
+        <p>
+          ❤️ You are appreciated more than you probably realize.
+        </p>
+
+        <p>
+          🦁 You are stronger than you think.
+        </p>
+
+        <p>
+          🐺 You are never as alone as you feel.
+        </p>
+
+        <p>
+          ✨ You deserve happiness, good things, and people who make you smile.
+        </p>
+
+      </section>
+
+
+      <div class="final-message">
+        Myliu 🐺 ✨
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       MAYMUN FM CONFETTI
+       ========================= */
+
+    function recordClicked() {
+
+      const symbols = [
+        "❤️",
+        "✨",
+        "💛",
+        "🦁",
+        "🐺",
+        "🎉",
+        "⭐"
+      ];
+
+      const colors = [
+        "#7a1f2d",
+        "#d4af37",
+        "#f0d675",
+        "#922b3a"
+      ];
+
+      /*
+        Create a burst from the center of
+        the Maymun FM record.
+      */
+
+      for (let i = 0; i < 45; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        if (Math.random() < 0.35) {
+          confetti.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+          confetti.style.fontSize =
+            (12 + Math.random() * 12) + "px";
+
+        } else {
+
+          confetti.textContent = "●";
+
+          confetti.style.color =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          confetti.style.fontSize =
+            (8 + Math.random() * 8) + "px";
+        }
+
+        /*
+          Start from roughly the center of the screen.
+        */
+
+        confetti.style.left =
+          (50 + (Math.random() - 0.5) * 12) + "vw";
+
+        confetti.style.top =
+          (45 + (Math.random() - 0.5) * 8) + "vh";
+
+        const duration =
+          1.8 + Math.random() * 2.2;
+
+        confetti.style.animationDuration =
+          duration + "s";
+
+        confetti.style.transform =
+          `translate(${(Math.random() - 0.5) * 500}px, 0)`;
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, duration * 1000 + 200);
+      }
+
+      /*
+        Extra little sparkle burst.
+      */
+
+      for (let i = 0; i < 8; i++) {
+
+        setTimeout(() => {
+
+          createFloating(
+            Math.random() > 0.5 ? "✨" : "❤️"
+          );
+
+        }, i * 90);
+
+      }
+    }
+
+
+    /* =========================
+       MAKE A WISH
+       ========================= */
+
+    function makeWish() {
+
+      const wish =
+        document.getElementById("wish");
+
+      wish.classList.toggle("show");
+
+      if (wish.classList.contains("show")) {
+
+        createFloating("✨");
+
+        setTimeout(
+          () => createFloating("❤️"),
+          500
+        );
+
+        setTimeout(
+          () => createFloating("✨"),
+          1000
+        );
+      }
+    }
+
+
+    /* =========================
+       OCCASIONAL HEARTS + STARS
+       ========================= */
+
+    function createFloating(symbol) {
+
+      const element =
+        document.createElement("div");
+
+      element.className = "floating";
+
+      element.textContent = symbol;
+
+      element.style.left =
+        Math.random() * 90 + 5 + "vw";
+
+      element.style.top =
+        Math.random() * 70 + 20 + "vh";
+
+      element.style.fontSize =
+        (16 + Math.random() * 14) + "px";
+
+      document.body.appendChild(element);
+
+      setTimeout(() => {
+        element.remove();
+      }, 5000);
+    }
+
+
+    function occasionalSparkle() {
+
+      const symbols = [
+        "❤️",
+        "✨"
+      ];
+
+      const symbol =
+        symbols[
+          Math.floor(
+            Math.random() * symbols.length
+          )
+        ];
+
+      createFloating(symbol);
+
+      const next =
+        7000 + Math.random() * 9000;
+
+      setTimeout(
+        occasionalSparkle,
+        next
+      );
+    }
+
+    setTimeout(
+      occasionalSparkle,
+      5000
+    );
+
+  </script>
+
+</body>
+</html>
+```
